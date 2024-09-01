@@ -1,11 +1,15 @@
-.hello {
-  background-color: red;
+.dark,
+.light {
+  width: 100vw;
+  height: 100vh;
 }
 
-.good {
-  background-color: green;
+.dark {
+  background: black;
+  color: white;
 }
 
-.bad {
-  background-color: blue;
+.light {
+  background: white;
+  color: black;
 }

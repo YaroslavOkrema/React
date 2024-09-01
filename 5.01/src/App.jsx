@@ -1,53 +1,61 @@
-import React from "react";
+import React, {useState} from "react";
 import UserName from "./UserName";
 
-let USERS = [
-    { id: 1, name: 'Alex', surname: 'Fox', age: 20},
-    { id: 2, name: 'Ivan', surname: 'Crab', age: 21},
-    { id: 3, name: 'Roma', surname: 'Chopa', age: 23},
-    { id: 4, name: 'Vlad', surname: 'Acrabat', age: 24},
-];
+// useState, useEffect, useCallback, useRef, useMemo, useContext
 
 const App = () => {
-    const [_, forceUpdate] = React.useReducer(x => x + 1, 0);
-    const changeName = (id, newName) => {
-        return () => {
-            console.log(id, newName);
-            USERS.map((user) => {
-                if (user.id === id) {
-                    return {
-                        id: user.id,
-                        name: newName,
-                        surname: user.surname,
-                        age: user.age,
-                    };
-                }
 
-                return user;
-            });
-            console.log(USERS);
-            forceUpdate();
-        }
+    /*const [isDark, setIsDark] = useState(true);
+
+    // let isDark = true;
+
+    const onClickHandler = () => {
+        // setIsDark(!isDark);
+        setIsDark((value) => {
+            console.log(value, isDark);
+            return !value;
+        });
+        // console.log(isDark);
+        // isDark = false;
     };
 
-    const data = [];
-        {USERS.map((user, index) => (
-            data.push(
-                <div>
-                    <UserName
-                        userId={user.id}
-                        userName={user.name}
-                        userSurname={user.surname}
-                        userAge={user.age}
-                        changeName={changeName}
-                    />
-                </div>
-            )
-        ));
-        }
+    return (
+        <div className={isDark ? 'dark' : 'light'}>
+            <button onClick={onClickHandler}>Change theme</button>
+        </div>
+    );*/
+
+    /*const [name, setName] = useState('');
+    const [password, setPassword] = useState('')*/
+
+    const [data, setData] = useState({ name: '', password: ''});
+
+    const onChangeName = (event) => {
+        setData((currentData) => {
+            return {
+                ...currentData,
+                name: event.target.value
+            };
+        });
+        // setName(event.target.value);
+    }
+
+    const onChangePassword = (event) => {
+        setData((currentData) => {
+           return {
+               ...currentData,
+               password: event.target.value}
+        });
+        // setPassword(event.target.value);
+    }
+
     return (
         <div>
-            {data}
+            <input type="text" onChange={onChangeName}/>
+            <input type="password" onChange={onChangePassword}/>
+
+            <p>Ваше имя: {data.name}</p>
+            <p>Ваш пароль: {data.password}</p>
         </div>
     );
 }
