@@ -7,7 +7,9 @@ const UserName = (props) => {
         {props.userAge > 20 ? (
             <p>
               {props.userName}
-              <button>Изменить имя</button>
+              <button onClick={props.changeName(props.userId, 'Vamp')}>
+                  Изменить имя
+              </button>
             </p>
         ) : null}
         <p>{props.userName} {props.userSurname}</p>
